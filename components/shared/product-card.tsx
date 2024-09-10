@@ -19,7 +19,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   price,
   imageUrl,
   className,
-}) => {
+}: ProductCardProps) => {
   return (
     <div className={className}>
       <Link href={`/product/${id}`}>

@@ -1,0 +1,14 @@
+model Ingredient {
+  id Int @id @default(autoincrement())
+
+  name String
+  price Int
+  imageUrl String
+
+  products Product[]
+
+  cartItems CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
