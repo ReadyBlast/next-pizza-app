@@ -6,3 +6,4 @@ export { getCartItemDetails } from './get-cart-item-details';
 export { getCartDetails } from './get-cart-details';
 export { updateCartUserAmount } from './update-cart-user-amount';
 export { findOrCreateCard } from './find-or-create-card';
+export { findPizzas } from './find-pizzas';

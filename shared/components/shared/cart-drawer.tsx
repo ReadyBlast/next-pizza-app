@@ -29,12 +29,14 @@ export const CartDrawer: React.FC<React.PropsWithChildren<CartDrawerProps>> = ({
   const [
     totalAmount,
     items,
+    // loading,
     fetchCartItems,
     updateItemQuantity,
     removeCartItem,
   ] = useCartStore((state) => [
     state.totalAmount,
     state.items,
+    // state.loading,
     state.fetchCartItems,
     state.updateItemQuantity,
     state.removeCartItem,
@@ -101,7 +103,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<CartDrawerProps>> = ({
             <Link href="/checkout">
               <Button
                 // onClick={() => setRedirecting(true)}
-                // loading={redirecting}
+                // loading={loading}
                 type="submit"
                 className="w-full h-12 text-base"
               >
