@@ -1,5 +1,6 @@
 export { Button } from "./button";
 export { Checkbox } from './checkbox';
+export { Sheet } from './sheet';
 export { Dialog } from './dialog';
 export { Drawer } from './drawer';
 export { Input } from './input';

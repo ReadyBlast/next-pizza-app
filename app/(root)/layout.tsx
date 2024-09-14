@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import { Nunito } from 'next/font/google';
-// import "/app/globals.css";
 import { Header } from '@/shared/components/shared';
 
 export const metadata: Metadata = {

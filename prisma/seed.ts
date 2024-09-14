@@ -185,7 +185,7 @@ const up = async () => {
     data: [
       {
         userId: 1,
-        totalAmount: 0,
+        totalAmount: 4564,
         token: '1234567890',
       },
       {
