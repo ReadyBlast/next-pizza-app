@@ -4,20 +4,34 @@ import { Filters } from './use-filters';
 import { useRouter } from 'next/navigation';
 
 export const useQueryFilters = (filters: Filters) => {
+  const isMounted = React.useRef(false);
   const router = useRouter();
 
   React.useEffect(() => {
-    const params = {
-      ...filters.prices,
-      sizes: Array.from(filters.sizes),
-      pizzaDoughTypes: Array.from(filters.pizzaDoughTypes),
-      ingredients: Array.from(filters.selectedIngredients),
-    };
+    if (isMounted.current) {
+      const params = {
+        ...filters.prices,
+        pizzaTypes: Array.from(filters.pizzaDoughTypes),
+        sizes: Array.from(filters.sizes),
+        ingredients: Array.from(filters.selectedIngredients),
+      };
 
-    const query = qs.stringify(params, {
-      arrayFormat: 'comma',
-    });
+      const query = qs.stringify(params, {
+        arrayFormat: 'comma',
+      });
 
-    router.push(`?${query}`, { scroll: false });
-  }, [filters.sizes, filters.pizzaDoughTypes, filters.selectedIngredients, filters.prices]);
+      router.push(`?${query}`, {
+        scroll: false,
+      });
+
+      console.log(filters, 999);
+    }
+
+    isMounted.current = true;
+  }, [
+    filters.sizes,
+    filters.pizzaDoughTypes,
+    filters.selectedIngredients,
+    filters.prices,
+  ]);
 };

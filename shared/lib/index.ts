@@ -7,3 +7,5 @@ export { getCartDetails } from './get-cart-details';
 export { updateCartUserAmount } from './update-cart-user-amount';
 export { findOrCreateCard } from './find-or-create-card';
 export { findPizzas } from './find-pizzas';
+export { sendEmail } from './send-email';
+export { createPayment } from './create-payment';
