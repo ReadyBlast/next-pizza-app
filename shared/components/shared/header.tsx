@@ -3,14 +3,14 @@
 import React from 'react';
 import { cn } from '@/shared/lib/utils';
 import Image from 'next/image';
-import { Button } from '../ui';
 import { Container } from './container';
-import { User } from 'lucide-react';
 import Link from 'next/link';
 import { SearchInput } from './search-input';
 import { CartButton } from './cart-button';
 import toast from 'react-hot-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { ProfileButton } from './profile-button';
+import { AuthModal } from './auth-modal';
 
 interface HeaderProps {
   isCheckout?: boolean;
@@ -18,6 +18,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ isCheckout, className }) => {
+  const [openAuthModal, setOpenAuthModal] = React.useState(false);
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -27,6 +28,14 @@ export const Header: React.FC<HeaderProps> = ({ isCheckout, className }) => {
 
     if (searchParams.has('paid')) {
       toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    }
+
+    if (searchParams.has('verified')) {
+      toastMessage = 'Заказ отменен';
+    }
+
+    if (searchParams.has('expired')) {
+      toastMessage = 'Действие кода активации истекло. Пожалуйста, пройдите регистрацию еще раз';
     }
 
     if (toastMessage) {
@@ -63,12 +72,14 @@ export const Header: React.FC<HeaderProps> = ({ isCheckout, className }) => {
 
         {/* Правая часть */}
         <div className="flex items-center gap-3">
-          <Button variant={'outline'} className="flex items-center gap-1">
-            <User size={16} />
-            Войти
-          </Button>
+          <AuthModal
+            open={openAuthModal}
+            onClose={() => setOpenAuthModal(false)}
+          />
 
-          {!isCheckout &&<CartButton />}
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
+
+          {!isCheckout && <CartButton />}
         </div>
       </Container>
     </header>

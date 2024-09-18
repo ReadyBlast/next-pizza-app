@@ -30,14 +30,14 @@ const up = async () => {
       {
         fullName: 'Admin Admin',
         email: 'admin@test.com',
-        password: hashSync('admin', 10),
+        password: hashSync('Qwerty123!', 10),
         role: 'ADMIN',
         verified: new Date(),
       },
       {
         fullName: 'User Test',
         email: 'user@test.com',
-        password: hashSync('user', 10),
+        password: hashSync('Qwerty123!', 10),
         role: 'USER',
         verified: new Date(),
       },

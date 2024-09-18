@@ -31,8 +31,12 @@ export { CheckoutItemSkeleton } from './checkout-item-skeleton';
 export { RequiredSymbol } from './required-symbol';
 export { ErrorText } from './error-text';
 export { AddressInput } from './address-input';
+export { ProfileButton } from './profile-button';
+export { InfoBlock } from './info-block';
+export { ProfileForm } from './profile-form';
 
 export * from './form';
 export * from './modals';
 export * from './checkout';
 export * from './email-templates';
+export * from './auth-modal';
