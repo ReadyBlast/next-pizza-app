@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -22,7 +22,7 @@ import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
 import { Api } from '@/shared/services/api-client';
 
-// export const dynamic = 'force-dynamic'; 
+// export const dynamic = 'force-dynamic';
 
 export default function CheckoutPage() {
   const [submitting, setSubmitting] = React.useState(false);
@@ -69,7 +69,7 @@ export default function CheckoutPage() {
       });
 
       if (url) {
-        location.href = url
+        location.href = url;
       }
     } catch (error) {
       console.error(error);
@@ -90,16 +90,17 @@ export default function CheckoutPage() {
   };
 
   return (
-    <Container className="mt-10">
-      <Title
-        text="Оформление заказа"
-        size="xl"
-        className="font-extrabold mb-8 text-[36px]"
-      />
+    <Suspense>
+      <Container className="mt-10">
+        <Title
+          text="Оформление заказа"
+          size="xl"
+          className="font-extrabold mb-8 text-[36px]"
+        />
 
-      <FormProvider {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex gap-10">
+        <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="flex gap-10">
               {/** Левая часть */}
               <div className="flex flex-col gap-10 flex-1 mb-20">
                 <CheckoutCart
@@ -118,15 +119,16 @@ export default function CheckoutPage() {
                 />
               </div>
 
-            {/** Правая часть */}
+              {/** Правая часть */}
               <CheckoutSidebar
                 totalAmount={totalAmount}
                 className="w-[450px]"
                 loading={loading || submitting}
               />
-          </div>
-        </form>
-      </FormProvider>
-    </Container>
+            </div>
+          </form>
+        </FormProvider>
+      </Container>
+    </Suspense>
   );
 }
