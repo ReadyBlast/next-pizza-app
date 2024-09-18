@@ -1,0 +1,20 @@
+model Story {
+  id Int @id @default(autoincrement())
+
+  previewImageUrl String
+
+  items StoryItem[]
+
+  createdAt DateTime @default(now())
+}
+
+model StoryItem {
+  id Int @id @default(autoincrement())
+
+  sourceUrl String
+
+  story Story @relation(fields: [storyId], references: [id])
+  storyId Int
+
+  createdAt DateTime @default(now())
+}

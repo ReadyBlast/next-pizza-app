@@ -1,6 +1,8 @@
-import { InfoBlock } from "@/shared/components/shared";
-import { getUserSession } from "@/shared/lib/get-user-session";
-import { redirect } from "next/navigation";
+import { InfoBlock } from '@/shared/components/shared';
+import { getUserSession } from '@/shared/lib/get-user-session';
+import { redirect } from 'next/navigation';
+
+// export const dynamic = 'force-dynamic';
 
 export default async function UnauthorizedPage() {
   const session = await getUserSession();
@@ -8,7 +10,7 @@ export default async function UnauthorizedPage() {
   if (session) {
     return redirect('/profile');
   }
-  
+
   return (
     <div className="flex flex-col items-center justify-center mt-40">
       <InfoBlock

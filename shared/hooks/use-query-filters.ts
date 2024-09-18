@@ -11,7 +11,7 @@ export const useQueryFilters = (filters: Filters) => {
     if (isMounted.current) {
       const params = {
         ...filters.prices,
-        pizzaTypes: Array.from(filters.pizzaDoughTypes),
+        pizzaDoughTypes: Array.from(filters.pizzaDoughTypes),
         sizes: Array.from(filters.sizes),
         ingredients: Array.from(filters.selectedIngredients),
       };
@@ -23,8 +23,6 @@ export const useQueryFilters = (filters: Filters) => {
       router.push(`?${query}`, {
         scroll: false,
       });
-
-      console.log(filters, 999);
     }
 
     isMounted.current = true;

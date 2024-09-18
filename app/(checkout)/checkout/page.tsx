@@ -22,6 +22,8 @@ import toast from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
 import { Api } from '@/shared/services/api-client';
 
+// export const dynamic = 'force-dynamic'; 
+
 export default function CheckoutPage() {
   const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, items, loading, updateItemQuantity, removeCartItem } =
@@ -42,17 +44,19 @@ export default function CheckoutPage() {
 
   React.useEffect(() => {
     async function fetchUserInfo() {
-      const data = await Api.auth.getMe();
-      const [firstName, lastName] = data.fullName.split(' ');
-
-      form.setValue('firstName', firstName);
-      form.setValue('lastName', lastName);
-      form.setValue('email', data.email);
+      if (!session) return; // Защита от пререндеринга до загрузки сессии
+      try {
+        const data = await Api.auth.getMe();
+        const [firstName, lastName] = data.fullName.split(' ');
+        form.setValue('firstName', firstName);
+        form.setValue('lastName', lastName);
+        form.setValue('email', data.email);
+      } catch (error) {
+        console.error('Failed to fetch user info:', error);
+      }
     }
 
-    if (session) {
-      fetchUserInfo();
-    }
+    fetchUserInfo();
   }, [session]);
 
   const onSubmit: SubmitHandler<CheckoutFormSchemaValues> = async (data) => {
@@ -96,31 +100,30 @@ export default function CheckoutPage() {
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-10">
-            {/** Левая часть */}
-            <div className="flex flex-col gap-10 flex-1 mb-20">
-              <CheckoutCart
-                onClickCountButton={onClickCountButton}
-                removeCartItem={removeCartItem}
-                items={items}
-                loading={loading}
-              />
+              {/** Левая часть */}
+              <div className="flex flex-col gap-10 flex-1 mb-20">
+                <CheckoutCart
+                  onClickCountButton={onClickCountButton}
+                  removeCartItem={removeCartItem}
+                  items={items}
+                  loading={loading}
+                />
 
-              <CheckoutPersonalForm
-                className={loading ? 'opacity-50 pointer-events-none' : ''}
-              />
+                <CheckoutPersonalForm
+                  className={loading ? 'opacity-50 pointer-events-none' : ''}
+                />
 
-              <CheckoutAddressForm
-                className={loading ? 'opacity-50 pointer-events-none' : ''}
-              />
-            </div>
+                <CheckoutAddressForm
+                  className={loading ? 'opacity-50 pointer-events-none' : ''}
+                />
+              </div>
 
             {/** Правая часть */}
-            <CheckoutSidebar
-              
-              totalAmount={totalAmount}
-              className="w-[450px]"
-              loading={loading || submitting}
-            />
+              <CheckoutSidebar
+                totalAmount={totalAmount}
+                className="w-[450px]"
+                loading={loading || submitting}
+              />
           </div>
         </form>
       </FormProvider>

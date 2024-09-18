@@ -11,17 +11,6 @@ interface FiltersProps {
   className?: string;
 }
 
-// interface PriceRange {
-//   min?: number;
-//   max?: number;
-// }
-
-// interface QueryFilters extends PriceRange {
-//   pizzaDoughTypes: string;
-//   sizes: string;
-//   ingredients: string;
-// }
-
 export const Filters: React.FC<FiltersProps> = ({ className }) => {
   const { ingredients, loading } = useIngredients();
   const filters = useFilters();

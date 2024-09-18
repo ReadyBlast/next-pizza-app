@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Turbo Pizza App
 
-First, run the development server:
+## Описание проекта
+
+**Turbo Pizza App** — это веб-приложение для заказа пиццы, разработанное с использованием [Next.js](https://nextjs.org/) и [Prisma](https://www.prisma.io/). Приложение позволяет пользователям создавать заказы, управлять настройками аккаунта и взаимодействовать с базой данных через API.
+
+## Стек технологий
+
+- **Frontend**: React, Next.js, Tailwind CSS
+- **Backend**: Next.js API routes, Prisma
+- **База данных**: ORM Prisma
+- **Аутентификация**: NextAuth.js
+- **Формы**: React Hook Form
+- **UI-компоненты**: Lucide UI
+
+## Установка и настройка
+
+### 1. Клонирование репозитория
+
+```bash
+git clone https://github.com/username/turbo-pizza-app.git
+cd turbo-pizza-app
+```
+
+### 2. Установка зависимостей
+
+Используйте пакетный менеджер [npm](https://www.npmjs.com/) или [yarn](https://yarnpkg.com/) для установки всех зависимостей:
+
+```bash
+npm install
+# или
+yarn install
+```
+
+### 3. Настройка базы данных
+
+Для настройки базы данных используйте Prisma. Выполните следующие команды:
+
+```bash
+npx prisma db push    # Применение миграций
+npx prisma studio     # Открытие Prisma Studio для управления данными
+```
+
+### 4. Запуск приложения
+
+Для запуска приложения в режиме разработки:
 
 ```bash
 npm run dev
-# or
+# или
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение будет доступно по адресу [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Скрипты
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+В проекте доступны следующие команды:
 
-## Learn More
+- `dev`: Запуск приложения в режиме разработки.
+- `build`: Сборка приложения для продакшена.
+- `start`: Запуск собранного приложения.
+- `lint`: Проверка кода с помощью ESLint.
+- `prisma:push`: Применение миграций базы данных через Prisma.
+- `prisma:studio`: Открытие интерфейса Prisma Studio для управления данными.
+- `prisma:seed`: Заполнение базы данных тестовыми данными.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
