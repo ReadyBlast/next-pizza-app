@@ -29,7 +29,7 @@ export async function GET() {
 
     return NextResponse.json(data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json(
       { message: '[USER_GET] Server error' },
       { status: 500 },

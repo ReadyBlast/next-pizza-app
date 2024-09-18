@@ -38,7 +38,7 @@ export async function PATCH(
 
     return NextResponse.json(updateUserCart);
   } catch (err) {
-    console.log('[CART_PATCH] Server error', err);
+    console.error('[CART_PATCH] Server error', err);
     return NextResponse.json(
       { message: 'Не удалось обновить корзину' },
       { status: 500 },
@@ -77,7 +77,7 @@ export async function DELETE(
     const updateUserCart = await updateCartUserAmount(token);
     return NextResponse.json(updateUserCart);
   } catch (err) {
-    console.log('[CART_DELETE] Server error', err);
+    console.error('[CART_DELETE] Server error', err);
     return NextResponse.json(
       { message: 'Не удалось удалить корзину' },
       { status: 500 },

@@ -112,7 +112,7 @@ export async function createOrder(data: CheckoutFormSchemaValues) {
 
     return paymentUrl;
   } catch (err) {
-    console.log('[CreateOrder] Server error', err);
+    console.error('[CreateOrder] Server error', err);
   }
 }
 
@@ -143,7 +143,7 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
       },
     });
   } catch (err) {
-    console.log('Error [UPDATE_USER]', err);
+    console.error('Error [UPDATE_USER]', err);
     throw err;
   }
 }
@@ -190,7 +190,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
       }),
     );
   } catch (err) {
-    console.log('Error [CREATE_USER]', err);
+    console.error('Error [CREATE_USER]', err);
     throw err;
   }
 }

@@ -1,5 +1,4 @@
 import prisma from '@/prisma/prisma-client';
-import { ingredients } from './../../prisma/constants';
 export interface GetSearchParams {
   query?: string;
   sortBy?: string;
@@ -66,6 +65,20 @@ export const findPizzas = async (params: GetSearchParams) => {
       },
     },
   });
+
+  if (params.sortBy === 'price') {
+    categories.forEach((category) => {
+      category.products.sort(
+        (a, b) => a.variants[0].price - b.variants[0].price,
+      );
+    });
+  }
+
+  if (params.sortBy === 'alphabet') {
+    categories.forEach((category) => {
+      category.products.sort((a, b) => a.name.localeCompare(b.name));
+    });
+  }
 
   return categories;
 };
